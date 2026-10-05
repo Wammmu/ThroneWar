@@ -161,7 +161,8 @@ function makeCard(character,index){
  const button=document.createElement('button');button.type='button';button.className='card';button.setAttribute('aria-label',character.name+' 상세 프로필 보기');
  const portrait=document.createElement('span');portrait.className='portrait';
  const empty=document.createElement('span');empty.className='placeholder';placeholder(empty,String(index+1).padStart(2,'0'),'기록 미공개');portrait.append(empty);
- const img=document.createElement('img');img.alt=character.name;img.loading='lazy';img.hidden=true;img.onload=()=>img.hidden=false;img.onerror=()=>img.hidden=true;img.src=character.assets[0].src;portrait.append(img);
+ // 숨겨진 탭에서도 대표 이미지를 미리 불러옵니다. hidden + lazy 조합은 로딩을 지연시킬 수 있습니다.
+ const img=document.createElement('img');img.alt=character.name;img.loading='eager';img.hidden=true;img.onload=()=>img.hidden=false;img.onerror=()=>img.hidden=true;img.src=character.assets[0].src;portrait.append(img);
  const meta=document.createElement('div');meta.className='card-meta';const name=document.createElement('h3');name.textContent=character.name;const tag=document.createElement('span');tag.textContent=character.type==='invoker'?'INVOKER':character.confirmed?'CONFIRMED':'CANDIDATE';meta.append(name,tag);
  const subtitle=document.createElement('p');subtitle.textContent=character.subtitle;button.append(portrait,meta,subtitle);button.addEventListener('click',()=>openCharacter(character,button));return button;
 }

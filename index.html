@@ -27,7 +27,7 @@ dialog{padding:0;border:1px solid var(--line);background:var(--bg);color:var(--t
    이미지 형식은 모두 WebP입니다. 다른 형식의 이미지는 실제 WebP로 변환해 저장하세요.
    확장자 이름만 변경하는 것은 이미지 형식 변환이 아닙니다.
    인보커: assets/images/영문식별자.webp
-   가디언: assets/images/영문식별자-battle.webp (전투복), 영문식별자-casual.webp (사복)
+   가디언: assets/images/영문식별자.webp (전투복), 영문식별자-casual.webp (사복)
    특수 형태: tiamat-dragon.webp, baekmyeon-geummo-fox.webp
    인물별 BGM: assets/audio/영문식별자.mp3 / 공통: assets/audio/site-theme.mp3
 
@@ -102,7 +102,7 @@ invokers[0].ability = '능력 이름\n능력의 세부 설명';
 invokers[0].description = '성격과 서사';
 */
 function guardian(id,name,confirmed,extraAsset){
- const assets=[{label:'전투복',src:`assets/images/${id}-battle.webp`},{label:'사복',src:`assets/images/${id}-casual.webp`}];
+ const assets=[{label:'전투복',src:`assets/images/${id}-.webp`},{label:'사복',src:`assets/images/${id}-casual.webp`}];
  if(extraAsset) assets.push({label:extraAsset.label,src:`assets/images/${id}-${extraAsset.file}.webp`});
  return {id,type:'guardian',name,confirmed,subtitle:'기록 미공개',
  profile:{'성별':'미정','외형':'미정','성향':'미정','출전':'미정','지역':'미정','스테이터스':'미정','인보커':'미정','좋아하는 것':'미정','싫어하는 것':'미정'},

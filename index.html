@@ -16,6 +16,7 @@ header{border-bottom:1px solid var(--line);background:#10131bf5;padding:22px 5vw
 .audio-bar{position:fixed;bottom:0;left:0;right:0;z-index:15;display:flex;align-items:center;gap:16px;padding:13px 5vw;background:#131823f5;border-top:1px solid var(--line);backdrop-filter:blur(14px)}.audio-toggle{width:40px;height:40px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;font-size:1.2rem;line-height:1}.track-info{min-width:0;flex:1}.track-info strong{display:block;font-size:.85rem;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.track-info span{display:block;font-size:.75rem;color:var(--muted)}.volume-label{font-size:.8rem;color:var(--muted)}#volume{width:90px;accent-color:var(--gold)}
 dialog{padding:0;border:1px solid var(--line);background:var(--bg);color:var(--text);width:min(1040px,94vw);max-height:90dvh;overflow:auto}dialog::backdrop{background:#05080ddd;backdrop-filter:blur(7px)}.modal-top{position:sticky;top:0;background:#10131bf5;z-index:3;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:13px 24px}.modal-top span{font-size:.75rem;letter-spacing:.15em;color:var(--gold)}.close{font-size:1.5rem;line-height:1;padding:7px 12px}.modal-grid{display:grid;grid-template-columns:36% 1fr;gap:34px;padding:32px}.modal-art{min-width:0}.asset-button{padding:0;width:100%;display:block;text-align:center}.asset-button:not(:disabled):hover .portrait{border-color:var(--gold)}.asset-caption{display:flex;justify-content:space-between;color:var(--gold);font-size:.85rem;margin:13px 0 4px}.asset-hint{font-size:.75rem;color:var(--muted);margin-bottom:25px}.modal-body{min-width:0}.modal-body h2{font-size:2.2rem;margin:0 0 5px}.modal-tag{font-size:.8rem;color:var(--gold);letter-spacing:.1em}.detail-section{margin-top:27px}.detail-section h3{font-family:inherit;font-size:.9rem;font-weight:500;letter-spacing:.05em;border-bottom:1px solid var(--line);padding-bottom:10px;color:var(--gold)}.profile-list{display:grid;grid-template-columns:100px minmax(0,1fr);gap:9px 14px;font-size:.9rem;margin:0}.profile-list dt{color:var(--muted)}.profile-list dd{margin:0;white-space:pre-line;overflow-wrap:anywhere}.detail-section p{color:#cdd0d8;font-size:.95rem;white-space:pre-line}.modal-audio{margin-top:24px;border-top:1px solid var(--line);padding-top:18px}.modal-audio button{border:1px solid var(--line);padding:7px 14px;font-size:.85rem}.modal-audio p{font-size:.75rem;color:var(--muted);margin:8px 0 0}
 @keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(min-width:1400px){.characters{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:820px){.layout{grid-template-columns:165px minmax(0,1fr)}aside{padding:35px 12px}.characters{grid-template-columns:repeat(2,minmax(0,1fr))}.modal-grid{gap:24px;padding:24px;grid-template-columns:35% 1fr}.profile-list{grid-template-columns:84px minmax(0,1fr)}.rule-list{gap:8px}.rule{padding:15px}}@media(max-width:600px){header{padding:18px 6vw}.edition{font-size:.7rem}.layout{display:block}aside{padding:8px 4vw;border-right:0;border-bottom:1px solid var(--line);display:flex;overflow-x:auto;gap:12px}.nav-group{display:contents}.nav-label{display:none}.nav-link{white-space:nowrap;padding:10px 6px;margin:0;border-left:0;border-bottom:2px solid transparent;font-size:.85rem}.nav-link[aria-current=page]{background:none}.nav-number{display:none}main{padding:30px 6vw 120px}.page-heading{margin-bottom:26px;padding-bottom:23px}.page-heading h1{font-size:2.25rem}.prose .lead{font-size:1.2rem}.characters{gap:25px 14px}.card-meta{display:block}.card-meta span{display:block}.modal-grid{display:block;padding:20px}.modal-art{max-width:330px;margin:auto}.modal-body h2{margin-top:25px}.profile-list{grid-template-columns:92px minmax(0,1fr)}.audio-bar{gap:10px;padding:10px 5vw}.volume-label{display:none}#volume{width:65px}.rule strong{font-size:1.2rem}.rule span{font-size:.8rem}.intro-sub{font-size:.9rem}.intro-footer{margin-top:45px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.card{align-self:start}.card p.card-epithet{color:var(--gold);font-family:var(--serif);font-size:.9rem;line-height:1.7;margin:6px 0 8px;word-break:keep-all;overflow-wrap:anywhere}.modal-epithet{color:var(--gold);font-family:var(--serif);font-size:1.1rem;line-height:1.8;margin:8px 0 20px;word-break:keep-all;overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -72,7 +73,7 @@ dialog{padding:0;border:1px solid var(--line);background:var(--bg);color:var(--t
 </main></div>
 <div class="audio-bar" aria-label="배경 음악 플레이어"><button type="button" class="audio-toggle" id="music-toggle" aria-label="BGM 재생">▷</button><div class="track-info"><strong id="track-name">신좌전쟁 · 공통 BGM</strong><span id="audio-status" role="status" aria-live="polite">재생 대기</span></div><label for="volume" class="volume-label">음량</label><input id="volume" type="range" min="0" max="100" value="35" aria-label="BGM 음량"></div>
 </div>
-<dialog id="character-modal" aria-labelledby="modal-name"><div class="modal-top"><span id="modal-class">CHARACTER RECORD</span><button type="button" class="close" id="close-modal" aria-label="프로필 닫기" autofocus>×</button></div><div class="modal-grid"><div class="modal-art"><button type="button" class="asset-button" id="asset-button" aria-label="다음 캐릭터 이미지 보기"><span class="portrait"><span class="placeholder" id="modal-placeholder"></span><img id="modal-image" alt="" hidden></span></button><div class="asset-caption"><span id="asset-label"></span><span id="asset-count"></span></div><p class="asset-hint" id="asset-hint"></p><div class="modal-audio"><button type="button" id="modal-music-toggle">테마곡 재생</button><p id="modal-audio-status" role="status" aria-live="polite"></p></div></div><div class="modal-body"><div class="modal-tag" id="modal-tag"></div><h2 id="modal-name"></h2><section class="detail-section"><h3>■ 프로필</h3><dl class="profile-list" id="modal-profile"></dl></section><section class="detail-section"><h3 id="ability-title">■ 능력</h3><p id="modal-ability"></p></section><section class="detail-section"><h3>■ 캐릭터 설명</h3><p id="modal-description"></p></section><section class="detail-section" id="relations-section"><h3>■ 타 신들과의 관계</h3><p id="modal-relations"></p></section></div></div></dialog>
+<dialog id="character-modal" aria-labelledby="modal-name"><div class="modal-top"><span id="modal-class">CHARACTER RECORD</span><button type="button" class="close" id="close-modal" aria-label="프로필 닫기" autofocus>×</button></div><div class="modal-grid"><div class="modal-art"><button type="button" class="asset-button" id="asset-button" aria-label="다음 캐릭터 이미지 보기"><span class="portrait"><span class="placeholder" id="modal-placeholder"></span><img id="modal-image" alt="" hidden></span></button><div class="asset-caption"><span id="asset-label"></span><span id="asset-count"></span></div><p class="asset-hint" id="asset-hint"></p><div class="modal-audio"><button type="button" id="modal-music-toggle">테마곡 재생</button><p id="modal-audio-status" role="status" aria-live="polite"></p></div></div><div class="modal-body"><div class="modal-tag" id="modal-tag"></div><h2 id="modal-name"></h2><p class="modal-epithet" id="modal-epithet" hidden></p><section class="detail-section"><h3>■ 프로필</h3><dl class="profile-list" id="modal-profile"></dl></section><section class="detail-section"><h3 id="ability-title">■ 능력</h3><p id="modal-ability"></p></section><section class="detail-section"><h3>■ 캐릭터 설명</h3><p id="modal-description"></p></section><section class="detail-section" id="relations-section"><h3>■ 타 신들과의 관계</h3><p id="modal-relations"></p></section></div></div></dialog>
 <script>
 'use strict';
 /* ================= 편집 영역: 경로 / 캐릭터 정보 =================
@@ -142,6 +143,29 @@ guardians[0].profile['출전'] = '신화 / 문헌';
 guardians[0].profile['스테이터스'] = '근력: A\n내구: B\n민첩: A\n마력: S';
 guardians[0].ability = '권능 이름\n권능 설명';
 */
+// 캐릭터 이명: 괄호 없이 입력하면 카드·상세 프로필에 「이명」으로 표시됩니다.
+const EPITHETS = {
+ "gabriel": "전능의 혼의 힘",
+ "arianrhod": "운명의 수레바퀴를 돌리는 자",
+ "susanoo": "폭풍의 무신",
+ "apollo": "광명의 예언자",
+ "kronos": "시공의 틈새에서 세계를 지켜보는 자",
+ "marduk": "원초의 대지를 무너뜨린 자",
+ "isis": "생자의 규칙을 정하는 자",
+ "eleni-arkadia": "은월의 저격수",
+ "artemis": "순결의 사냥꾼",
+ "maria-schwarz": "미완의 성녀",
+ "michael": "전능의 혼과 닮은 자",
+ "tsuchimikado-ren": "천년음양의 적자",
+ "baekmyeon-geummo": "태양의 이면",
+ "nina-shahar": "무구의 마력로",
+ "tiamat": "원초의 대지모신",
+ "amina-nefer": "왕묘의 계승자",
+ "nephthys": "사자의 규칙을 정하는 자",
+ "claire-haldorsen": "신대문자의 복원가",
+ "lugh-lamhfada": "에린의 빛나는 자"
+};
+[...invokers,...guardians].forEach(character=>{character.epithet=EPITHETS[character.id]||'';});
 /* ================= 동작 영역 ================= */
 const $ = id => document.getElementById(id);
 const allCharacters = [...invokers,...guardians];
@@ -158,13 +182,15 @@ function placeholder(node,index,caption){
  node.replaceChildren();const symbol=document.createElement('b'),label=document.createElement('small');symbol.textContent=index;label.textContent=caption;node.append(symbol,label);
 }
 function makeCard(character,index){
- const button=document.createElement('button');button.type='button';button.className='card';button.setAttribute('aria-label',character.name+' 상세 프로필 보기');
+ const button=document.createElement('button');button.type='button';button.className='card';button.setAttribute('aria-label',character.name+(character.epithet?' 「'+character.epithet+'」':'')+' 상세 프로필 보기');
  const portrait=document.createElement('span');portrait.className='portrait';
  const empty=document.createElement('span');empty.className='placeholder';placeholder(empty,String(index+1).padStart(2,'0'),'기록 미공개');portrait.append(empty);
  // 숨겨진 탭에서도 대표 이미지를 미리 불러옵니다. hidden + lazy 조합은 로딩을 지연시킬 수 있습니다.
  const img=document.createElement('img');img.alt=character.name;img.loading='eager';img.hidden=true;img.onload=()=>img.hidden=false;img.onerror=()=>img.hidden=true;img.src=character.assets[0].src;portrait.append(img);
  const meta=document.createElement('div');meta.className='card-meta';const name=document.createElement('h3');name.textContent=character.name;const tag=document.createElement('span');tag.textContent=character.type==='invoker'?'INVOKER':character.confirmed?'CONFIRMED':'CANDIDATE';meta.append(name,tag);
- const subtitle=document.createElement('p');subtitle.textContent=character.subtitle;button.append(portrait,meta,subtitle);button.addEventListener('click',()=>openCharacter(character,button));return button;
+ button.append(portrait,meta);
+ if(character.epithet){const epithet=document.createElement('p');epithet.className='card-epithet';epithet.textContent='「'+character.epithet+'」';button.append(epithet);}
+ const subtitle=document.createElement('p');subtitle.textContent=character.subtitle;button.append(subtitle);button.addEventListener('click',()=>openCharacter(character,button));return button;
 }
 invokers.forEach((c,i)=>$('invoker-grid').append(makeCard(c,i)));
 guardians.forEach((c,i)=>$(c.confirmed?'confirmed-grid':'candidate-grid').append(makeCard(c,i)));
@@ -185,6 +211,8 @@ renderAsset.token=0;
 function openCharacter(character,trigger){
  selected=character;assetIndex=0;lastTrigger=trigger;
  $('modal-name').textContent=character.name;
+ $('modal-epithet').textContent=character.epithet?'「'+character.epithet+'」':'';
+ $('modal-epithet').hidden=!character.epithet;
  $('modal-class').textContent=character.type==='invoker'?'INVOKER RECORD':'GUARDIAN RECORD';
  $('modal-tag').textContent=character.type==='invoker'?'신을 호출하는 자':character.confirmed?'참가 확정':'참가 미확정 · 선택 가능한 가디언';
  const profile=$('modal-profile');profile.replaceChildren();

@@ -99,7 +99,7 @@ dialog{padding:0;border:1px solid var(--line);background:var(--bg);color:var(--t
 5. 가디언 confirmed 값으로 참가 확정 6명과 미확정 7명을 나눕니다.
    인보커 guardianId가 가리키는 가디언을 양쪽 프로필의 계약 상대로 표시합니다.
    가디언 페이지의 신화대계별 분류는 각 프로필의 출전 값을 기준으로 자동으로 묶습니다.
-   테마곡 제목은 캐릭터 이명(EPITHETS)으로 표시되며 음원 파일명은 기존 영문 식별자를 사용합니다.
+   테마곡 제목은 THEME_TITLES의 영어 곡명으로 표시되며 음원 파일명은 기존 영문 식별자를 사용합니다.
 6. 연대 원문의 '서기 26년 시작'과 '기원전 2,026년부터'는 상충합니다.
    역사 본문은 원문을 보존했고, 아래 타임라인에는 회차만 표시했습니다.
 7. 인트로의 프롤로그 보기 / 캐릭터 보기 버튼으로 해당 페이지에 바로 입장합니다.
@@ -645,7 +645,33 @@ const EPITHETS = {
  "claire-haldorsen": "신대문자의 복원가",
  "lugh-lamhfada": "에린의 빛나는 자"
 };
-[...invokers,...guardians].forEach(character=>{character.epithet=EPITHETS[character.id]||'';});
+// 캐릭터 테마곡의 영어 표시 제목. 음원 경로와 한국어 이명은 별도로 관리합니다.
+const THEME_TITLES = {
+ "gabriel": "Might of the Almighty Soul",
+ "arianrhod": "She Who Unravels Fate",
+ "susanoo": "Stormborne Warrior",
+ "apollo": "Prophet of Radiance",
+ "kronos": "Watcher Beyond Time",
+ "marduk": "Breaker of the Primordial Earth",
+ "isis": "Lawgiver of the Living",
+ "eleni-arkadia": "Silvermoon Sniper",
+ "artemis": "The Chaste Huntress",
+ "maria-schwarz": "The Unfinished Saint",
+ "michael": "The Likeness of the Almighty Soul",
+ "tsuchimikado-ren": "Heir to a Millennium of Onmyodo",
+ "baekmyeon-geummo": "The Other Face of the Sun",
+ "nina-shahar": "The Innocent Wellspring of Mana",
+ "tiamat": "Primordial Earth Mother",
+ "amina-nefer": "Heir to the Royal Tomb",
+ "nephthys": "Lawgiver of the Dead",
+ "claire-haldorsen": "Restorer of Divine Runes",
+ "lugh-lamhfada": "The Shining One of Erin",
+ "invoker-07": "Invoker 07"
+};
+[...invokers,...guardians].forEach(character=>{
+ character.epithet=EPITHETS[character.id]||'';
+ character.themeTitle=THEME_TITLES[character.id]||'Untitled Theme';
+});
 /* ================= 동작 영역 ================= */
 const $ = id => document.getElementById(id);
 const allCharacters = [...invokers,...guardians];
@@ -841,7 +867,7 @@ function setTrack(character){
  if(currentKey==='site')sitePosition=Number.isFinite(player.currentTime)?player.currentTime:0;
  ++audioRevision;player.pause();currentKey=character?character.id:'site';pendingSeek=character?0:sitePosition;
  player.src=character?character.theme:CONFIG.siteTheme;
- const title=character?'「'+(character.epithet||character.name)+'」':CONFIG.siteThemeName;
+ const title=character?'「'+character.themeTitle+'」':CONFIG.siteThemeName;
  $('track-name').textContent=title;
  $('modal-track-name').textContent=character?title:'';
  syncAudioControls();if(musicEnabled)playCurrent();else audioStatus('일시정지');
